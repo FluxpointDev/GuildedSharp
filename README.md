@@ -6,6 +6,7 @@ You can check out my [Guilded Server](https://www.guilded.gg/fluxpoint/groups/rD
 
 # Bot Access
 This library is only used for the official API and will never support userbots or abuse.
+
 You need to apply for beta access to get full bot accounts [Apply Here](https://www.guilded.gg/r/zzQR46qKZE?i=x4ooeNo4)
 
 # Install
