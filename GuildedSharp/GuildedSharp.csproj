@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Company>Fluxpoint Development</Company>
+    <Authors>xXBuilderBXx</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/xXBuilderBXx/GuildedSharp</RepositoryUrl>
+    <Description>A library for connecting to the Guilded official API with a bot account. Http is only supported atm, websocket will be coming soon.</Description>
+    <PackageReleaseNotes>First release with partial support for http requests.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
