@@ -11,6 +11,7 @@ You need to apply for beta access to get full bot accounts [Apply Here](https://
 
 # Install
 You can install the nuget package here to use the API https://www.nuget.org/packages/GuildedSharp
+
 Here is an example of how to use it.
 ```cs
 static void Main(string[] args)
