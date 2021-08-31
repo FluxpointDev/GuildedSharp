@@ -20,6 +20,7 @@ namespace GuildedSharp.Websocket
         }
         internal GuildedClient Client;
         internal ClientWebSocket WebSocket;
+        internal bool FirstConnected = true;
         internal static string HostUrl = "wss://api.guilded.gg/v1/websocket";
 
         public CancellationToken CancellationToken;
@@ -38,10 +39,15 @@ namespace GuildedSharp.Websocket
                         await Receive(WebSocket, CancellationToken);
 
                     }
+                    catch (WebSocketException we)
+                    {
+                        Console.WriteLine($"WebSocket Error - {we}");
+                        await Task.Delay(10000);
+                    }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"WebSocket Error - {ex}");
-                        await Task.Delay(5000);
+                        Console.WriteLine($"Client Error - {ex}");
+                        await Task.Delay(10000);
                     }
                 }
             }
@@ -76,6 +82,15 @@ namespace GuildedSharp.Websocket
             };
         }
 
+        internal Task Heartbeat;
+
+        internal class HeartbeatRequest
+        {
+            public int op;
+            public long d;
+        }
+
+
         private async Task WebSocketMessage(string json)
         {
             JToken Payload = Newtonsoft.Json.JsonConvert.DeserializeObject<JToken>(json);
@@ -84,7 +99,23 @@ namespace GuildedSharp.Websocket
             switch ((int)Payload["op"])
             {
                 case 1:
-                    Console.WriteLine("WebSocket Hello!");
+                    if (FirstConnected)
+                        Console.WriteLine("WebSocket Connected!");
+                    else
+                        Console.WriteLine("Websocket Reconnected!");
+                    FirstConnected = false;
+                    Heartbeat = Task.Run(async () =>
+                    {
+                        while (!CancellationToken.IsCancellationRequested)
+                        {
+                            await Task.Delay((int)Payload["d"]["heartbeatIntervalMs"]);
+                            await Send(WebSocket, Newtonsoft.Json.JsonConvert.SerializeObject(new HeartbeatRequest
+                            {
+                                op = 3,
+                                d = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+                            }), CancellationToken);
+                        }
+                    });
                     break;
                 case 0:
                     {
