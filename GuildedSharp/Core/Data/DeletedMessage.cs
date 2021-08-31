@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace GuildedSharp.Core
 {
-    public class GuildedClientConfig
+    public class DeletedMessage
     {
-        public string UserAgent { get; set; } = "GuildedBot v1 (GuildedSharp)";
-        public bool DebugEvents { get; set; }
+        public string id;
+        public string channelId;
+        public string deletedAt;
     }
 }
