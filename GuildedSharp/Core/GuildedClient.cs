@@ -1,8 +1,6 @@
 ﻿using GuildedSharp.Rest;
 using GuildedSharp.Websocket;
-using Microsoft.VisualBasic;
 using Newtonsoft.Json;
-using System;
 using System.Threading.Tasks;
 
 namespace GuildedSharp.Core

@@ -1,5 +1,4 @@
-﻿using GuildedSharp.Rest.Requests;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GuildedSharp.Rest

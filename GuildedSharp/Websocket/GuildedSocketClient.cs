@@ -1,5 +1,4 @@
 ﻿using GuildedSharp.Core;
-using GuildedSharp.Rest;
 using GuildedSharp.Websocket.Events;
 using Newtonsoft.Json.Linq;
 using System;

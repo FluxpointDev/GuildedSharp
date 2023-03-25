@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GuildedSharp.Rest.Requests
+﻿namespace GuildedSharp.Rest.Requests
 {
     public class MessageContentRequest : GuildedRequest
     {
